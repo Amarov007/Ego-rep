@@ -1,0 +1,349 @@
+@import "tailwindcss";
+
+:root {
+  /* Core Palette Tokens (Dark-Mode Optical Contrast Calibrated) */
+  --ego-ink: #050506;
+  --ego-surface: #0b0b0f;
+  --ego-surface-raised: #121218;
+  --ego-bone: #f2efe9;
+  --ego-muted: rgba(242, 239, 233, 0.72);
+  --ego-dim: rgba(242, 239, 233, 0.48);
+  --ego-hairline: rgba(242, 239, 233, 0.12);
+  --ego-hairline-strong: rgba(242, 239, 233, 0.26);
+
+  /* Signal Light Tokens (used as light, lines, and fissures) */
+  --ego-red: #c1121f;
+  --ego-blue: #2d6bff;
+  --ego-cyan: #5fe3ff;
+  --ego-terminal: #34d399;
+
+  /* Typography */
+  --font-serif: "Fraunces", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-ar-display: "Reem Kufi", "IBM Plex Sans Arabic", sans-serif;
+  --font-ar-ui: "IBM Plex Sans Arabic", sans-serif;
+
+  /* Motion Curves (heavy, deliberate, cinematic) */
+  --ease-monolith: cubic-bezier(0.22, 1, 0.36, 1);
+  --duration-slow: 720ms;
+  --duration-medium: 420ms;
+
+  /* Safe Areas */
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+html,
+body {
+  background-color: var(--ego-ink);
+  color: var(--ego-bone);
+  height: 100%;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: transparent;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html[dir="rtl"] body {
+  font-family: var(--font-ar-ui);
+}
+
+.font-editorial {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+  font-variation-settings: "SOFT" 10, "WONK" 0;
+}
+
+html[dir="rtl"] .font-editorial {
+  font-family: var(--font-ar-display);
+  letter-spacing: 0 !important;
+  font-weight: 600;
+}
+
+.font-body {
+  font-family: var(--font-sans);
+}
+
+html[dir="rtl"] .font-body {
+  font-family: var(--font-ar-ui);
+}
+
+.font-mono-tech {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Ensure crisp Arabic rendering on UI labels while preserving tabular numerals */
+html[dir="rtl"] .font-mono-tech {
+  font-family: var(--font-ar-ui), var(--font-mono);
+  letter-spacing: 0.015em !important;
+  font-variant-numeric: tabular-nums;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.tracking-editorial {
+  letter-spacing: 0.24em;
+}
+
+html[dir="rtl"] .tracking-editorial {
+  letter-spacing: 0.03em;
+}
+
+/* Hairline border utilities */
+.border-hairline {
+  border-color: var(--ego-hairline);
+}
+
+.border-hairline-strong {
+  border-color: var(--ego-hairline-strong);
+}
+
+/* Modern architectural panel surface with subtle specular top edge */
+.ego-panel {
+  background: linear-gradient(180deg, rgba(20, 20, 27, 0.78) 0%, rgba(10, 10, 14, 0.94) 100%);
+  border: 1px solid var(--ego-hairline);
+  border-radius: 16px;
+  box-shadow: inset 0 1px 0 rgba(242, 239, 233, 0.05);
+}
+
+.ego-panel-interactive {
+  background: linear-gradient(180deg, rgba(19, 19, 26, 0.72) 0%, rgba(9, 9, 13, 0.94) 100%);
+  border: 1px solid var(--ego-hairline);
+  border-radius: 16px;
+  box-shadow: inset 0 1px 0 rgba(242, 239, 233, 0.05);
+  transition: border-color 220ms var(--ease-monolith), background-color 220ms var(--ease-monolith), transform 180ms var(--ease-monolith), box-shadow 220ms var(--ease-monolith);
+}
+
+.ego-panel-interactive:hover {
+  border-color: var(--ego-hairline-strong);
+  box-shadow: inset 0 1px 0 rgba(242, 239, 233, 0.1), 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Modern Telegram-bot-grade rounded interactive buttons */
+.ego-btn-primary {
+  border-radius: 14px;
+  background: linear-gradient(180deg, #1b222c 0%, #10141b 100%);
+  border: 1px solid rgba(95, 227, 255, 0.55);
+  box-shadow: inset 0 1px 0 rgba(242, 239, 233, 0.18), 0 6px 22px rgba(0, 0, 0, 0.45);
+  transition: transform 160ms var(--ease-monolith), border-color 220ms var(--ease-monolith), background 220ms var(--ease-monolith), box-shadow 220ms var(--ease-monolith);
+}
+
+.ego-btn-primary:hover:not(:disabled) {
+  border-color: rgba(242, 239, 233, 0.85);
+  box-shadow: inset 0 1px 0 rgba(242, 239, 233, 0.28), 0 8px 28px rgba(95, 227, 255, 0.12);
+}
+
+.ego-btn-primary:active:not(:disabled) {
+  transform: scale(0.975);
+}
+
+.ego-btn-secondary {
+  border-radius: 9999px;
+  background: rgba(242, 239, 233, 0.045);
+  border: 1px solid rgba(242, 239, 233, 0.2);
+  box-shadow: inset 0 1px 0 rgba(242, 239, 233, 0.08);
+  transition: transform 150ms var(--ease-monolith), border-color 200ms var(--ease-monolith), background-color 200ms var(--ease-monolith), color 200ms var(--ease-monolith);
+}
+
+.ego-btn-secondary:hover:not(:disabled) {
+  background: rgba(242, 239, 233, 0.09);
+  border-color: rgba(242, 239, 233, 0.55);
+}
+
+.ego-btn-secondary:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+/* Subtle studio key-light behind primary balance */
+.ego-keylight {
+  background: radial-gradient(
+    ellipse 60% 45% at 50% 0%,
+    rgba(242, 239, 233, 0.045) 0%,
+    rgba(45, 107, 255, 0.025) 42%,
+    transparent 75%
+  );
+}
+
+/* Subtle procedural film grain overlay */
+.ego-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* Vignette framing */
+.ego-vignette {
+  background: radial-gradient(
+    ellipse 82% 76% at 50% 45%,
+    transparent 42%,
+    rgba(5, 5, 6, 0.52) 84%,
+    rgba(5, 5, 6, 0.92) 100%
+  );
+}
+
+/* Breathing light animation for Forge cracks and beams */
+@keyframes ego-breathe {
+  0%,
+  100% {
+    opacity: 0.76;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-ego-breathe {
+  animation: ego-breathe 4.4s var(--ease-monolith) infinite;
+}
+
+/* Monolith tap shockwave ring */
+@keyframes ego-resonance-ring {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.75);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.38);
+  }
+}
+
+.animate-resonance-ring {
+  animation: ego-resonance-ring 680ms var(--ease-monolith) forwards;
+}
+
+/* Rising fine fissure ember */
+@keyframes ego-ember-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  25% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-44px);
+  }
+}
+
+.animate-ember-rise {
+  animation: ego-ember-rise 3.4s linear infinite;
+}
+
+/* Claim / Rank-Up Scanline & Glitch Pulse */
+@keyframes ego-scanline-sweep {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  18% {
+    opacity: 0.85;
+  }
+  70% {
+    opacity: 0.45;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+@keyframes ego-glitch-jitter {
+  0%,
+  100% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  15% {
+    transform: translateX(-3px);
+    opacity: 0.55;
+  }
+  32% {
+    transform: translateX(4px);
+    opacity: 0.35;
+  }
+  52% {
+    transform: translateX(-2px);
+    opacity: 0.25;
+  }
+  75% {
+    transform: translateX(1px);
+    opacity: 0.12;
+  }
+}
+
+.animate-scanline-sweep {
+  animation: ego-scanline-sweep 820ms var(--ease-monolith) forwards;
+}
+
+.animate-glitch-jitter {
+  animation: ego-glitch-jitter 620ms steps(2, end) forwards;
+}
+
+/* Vertical claim light eruption */
+@keyframes ego-beam-erupt {
+  0% {
+    opacity: 0;
+    transform: scaleY(0.15) scaleX(0.4);
+  }
+  22% {
+    opacity: 1;
+    transform: scaleY(1) scaleX(1.15);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(1.06) scaleX(0.25);
+  }
+}
+
+.animate-beam-erupt {
+  animation: ego-beam-erupt 880ms var(--ease-monolith) forwards;
+  transform-origin: center bottom;
+}
+
+/* Scrollbar suppression for clean editorial scrolling */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Safe-area spacing helpers */
+.pt-safe {
+  padding-top: max(12px, var(--safe-top));
+}
+.pb-safe {
+  padding-bottom: max(10px, var(--safe-bottom));
+}
+
+/* Reduced Motion Compliance */
+@media (prefers-reduced-motion: reduce) {
+  .animate-ego-breathe,
+  .animate-scanline-sweep,
+  .animate-glitch-jitter,
+  .animate-beam-erupt,
+  .animate-resonance-ring,
+  .animate-ember-rise {
+    animation: none !important;
+  }
+
+  * {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

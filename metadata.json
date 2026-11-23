@@ -1,0 +1,6 @@
+{
+  "name": "EGO REP",
+  "description": "An editorial passive-mining, daily discipline, and TON boost Telegram Mini App built around The Forge.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
