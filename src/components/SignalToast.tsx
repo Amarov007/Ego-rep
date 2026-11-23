@@ -48,11 +48,6 @@ export const SignalToast: React.FC<SignalToastProps> = ({ toast }) => {
             <span className="font-mono-tech text-[11px] font-medium tracking-[0.14em] text-[#F2EFE9]">
               {toast.label}
             </span>
-            <span
-              className="ego-toast-timer absolute bottom-0 inset-x-0 h-px opacity-60"
-              style={{ backgroundColor: ACCENT_HEX[toast.accent] }}
-              aria-hidden="true"
-            />
             {toast.detail && (
               <span
                 className="font-mono-tech text-[11px] font-medium tabular-nums shrink-0"
